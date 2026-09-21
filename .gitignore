@@ -1,3 +1,16 @@
 .venv/
 __pycache__/
 *.pyc
+
+# 实证研究：原始数据和清洗产物不进版本库，骨架靠 .gitkeep 留住
+# data/external/ 例外——外部整理数据要进版本库，这里不排除
+empirical study/data/raw/*
+!empirical study/data/raw/.gitkeep
+empirical study/data/processed/*
+!empirical study/data/processed/.gitkeep
+empirical study/output/tables/*
+!empirical study/output/tables/.gitkeep
+empirical study/output/figures/*
+!empirical study/output/figures/.gitkeep
+empirical study/output/robustness/*
+!empirical study/output/robustness/.gitkeep

@@ -1,0 +1,14 @@
+% 元数据来源：Crossref（DOI 的正式发表记录），arXiv 编号来自 Semantic Scholar。
+% 核对日期：2026-09-14
+
+@inproceedings{baek2025pipe,
+  title         = {{PIPE} Planner: Pathwise Information Gain with Map Predictions for Indoor Robot Exploration},
+  author        = {Baek, Seungjae and Moon, Brady and Kim, Seungchan and Cao, Muqing and Ho, Cherie and Scherer, Sebastian and Jeon, Jeong Hwan},
+  booktitle     = {2025 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  year          = {2025},
+  pages         = {7684--7691},
+  publisher     = {IEEE},
+  doi           = {10.1109/IROS60139.2025.11246190},
+  archivePrefix = {arXiv},
+  eprint        = {2503.07504},
+}
