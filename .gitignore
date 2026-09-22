@@ -14,3 +14,10 @@ empirical study/output/figures/*
 !empirical study/output/figures/.gitkeep
 empirical study/output/robustness/*
 !empirical study/output/robustness/.gitkeep
+
+
+# ===== git-ignore 自动整理 2026-09-22 =====
+## A 脚本跑出来的产物
+# references.bib 覆盖前的自动备份：CLAUDE.md 红线要求生成，但不必进版本库
+# （git 历史本身就是备份）。硬盘上的 .bak 原样保留。
+citations/*.bak

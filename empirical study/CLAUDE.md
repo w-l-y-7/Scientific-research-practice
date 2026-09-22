@@ -52,7 +52,9 @@
 
 本项目使用 Claude Code 辅助完成以下任务：数据清洗脚本生成、回归代码模板生成、表格与图形格式化、稳健性矩阵批量执行。所有分析结果已由研究者独立核验。论文正式版本须在致谢或方法附录按 AEA 2025 披露政策注明 AI 工具使用范围。
 
-披露段模板（中英双语）保存在 `references/ai-disclosure-template.md`。
+披露段模板（中英双语）保存在 `references/ai-disclosure-template.md`，其中还列了三条硬要求
+（工具披露 / 责任承担 / **禁止署名**）。更完整的学术诚信清单见
+`references/academic-integrity.md`。
 
 ## 六、数据许可声明
 
@@ -61,7 +63,9 @@
 - QCEW：美国 BLS 公开数据，无版权限制，可随复现包分发
 - 各州最低工资历史：Dube et al. 整理版本，引用 Vaghul & Zipperer (2016) WP
 - 本项目不涉及 WRDS、Compustat、CRSP、Wind、CSMAR 等受许可数据
-- 若未来扩展至受限数据，须另建分支项目并在本文件明确声明
+- 若未来扩展至受限数据，须另建分支项目并在本文件明确声明。**受限数据的原始文件不得以
+  任何方式进入 Claude Code 会话**（粘贴、附件、截图都不行）——操作步骤见
+  `references/academic-integrity.md` 第 2 节
 
 ## 七、人在回路（HITL）节点
 

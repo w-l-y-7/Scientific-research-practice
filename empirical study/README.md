@@ -8,6 +8,7 @@
 根目录的技能和代理里写死的相对路径，在这里一个都不能用。
 
 第一节先交代为什么这样分工，第二节起是流水线本身。
+**投稿前必读第八节**——那里列的是只能由研究者亲自做的判断，机器一条都代劳不了。
 
 ---
 
@@ -200,7 +201,7 @@ empirical study/
 │   └── robustness/   cells.csv，逐格结果
 ├── logs/             每次运行留痕，带时间戳
 ├── paper/            正文
-├── references/       方法卡、AI 披露模板
+├── references/       方法卡、AI 披露模板、学术诚信清单
 └── .claude/
     ├── rules/        回归规范默认值
     └── hooks/        写 .R 时的自动检查
@@ -304,7 +305,7 @@ Rscript code/05_main/05_main.R
 | `CLAUDE.md` | 定约束大方向 | 路径、种子、版本、命名、披露、HITL、提交、写法约定、AI 边界、子代理分工、矩阵纪律 |
 | `.claude/rules/` | 管具体写法 | `regression-spec.md` |
 | `.claude/hooks/` | 写 `.R` 时的自动检查与门禁 | `check_r_traps.py`（PreToolUse + PostToolUse）、`check_hitl_stop.py`（Stop） |
-| `references/` | 给研究者随时查阅的方法论诊断卡 | `did-checklist.md`、`iv-validity.md`、`rdd-bandwidth.md`、`ai-disclosure-template.md` |
+| `references/` | 给研究者随时查阅的方法论诊断卡 | `did-checklist.md`、`iv-validity.md`、`rdd-bandwidth.md`、`ai-disclosure-template.md`、`academic-integrity.md` |
 | 根 `.claude/agents/` | 阶段 6/7 的执行与审阅代理 | `estimator-agent.md`、`robustness-reviewer.md` |
 | 根 `.claude/skills/` | 需要人中途把关的环节 | `method-advisor`、`did-estimate` |
 
@@ -368,3 +369,51 @@ hook 的具体判准见 [CLAUDE.md](CLAUDE.md) 第九节。**只有「缺种子�
 - **结论措辞跟着识别策略走。** 假设驱动的方法写成「在某某假设下」，
   不写成「已证明」。
 - **每次运行留日志。** 时间戳、输入文件名、输出文件名、观测数，缺一样就没法复现。
+
+---
+
+## 八、学术诚信：这几件事只能你自己做
+
+第七节讲的是「脚本不许做什么」，这一节讲「你必须做什么」。
+完整版在 [references/academic-integrity.md](references/academic-integrity.md)，这里是提要。
+
+### 五个判断，AI 一个都不能代劳
+
+| 节点 | 你拍板什么 | 落在哪 |
+| --- | --- | --- |
+| 1 识别假设与方法选择 | 用哪个识别策略、平行趋势能不能信 | `code/01_identify/` 决策记录 |
+| 2 样本构造规则 | 年份范围、异常值阈值、哪些单元算控制组 | `03_clean.R` 参数区 |
+| 3 主回归规范 | 固定效应结构、聚类层级、控制变量集 | `05_main.R` 的 `CONFIRMED` 闸门 |
+| 4 稳健性矩阵边界 | 换哪些维度、做到什么程度算够 | `config/robustness-matrix.R` |
+| 5 最终表格与结论措辞 | 每个数字亲自核；「显著降低」还是「无显著影响」 | 正文定稿 |
+
+**共同特征：输出质量无法用自动规则检验。** 这正是 Hooks 和 Skills 只在这里
+「停下来等你」、而不替你决定的原因——机器能判断「有没有 `set.seed`」，
+判断不了「这个识别策略对不对」。
+
+还有一条单独说：**AI 会系统性偏向 DID。** 苏黎世大学的 APEP 全自动管线
+（截至 2026 年 3 月约 592 篇）产出的论文里，73.8% 至少三次提及 DID，远高于
+NBER 工作论文的比例。本仓矩阵的估计量维度 TWFE / CS / SA **三档全在 DID 家族里**——
+跑得再满，也回答不了「这个政策问题该不该用 DID」。那是你的问题。
+
+### 投稿前逐条过一遍
+
+- [ ] **表里的 N 和主表对得上吗？** 逐列核。某一列因为筛选掉观测值、N 从 10000
+      跌到 8500，是审稿人最容易发现的一类不一致
+- [ ] **聚类层级写进表脚注了吗？** 「标准误是怎么聚类的」是审稿意见里最高频的问题之一。
+      代码里写对 ≠ 表里标注了，这是两件事
+- [ ] **经典数据集的结果，是你跑出来的还是模型记得的？** `mpdta` 正是经典数据集。
+      数据指纹 + 在模型没见过的新子样本上复现，是唯一的反证方式
+- [ ] **受限数据没进过会话吧？** WRDS / Wind / CSMAR 的原始文件，粘贴、附件、
+      截图都不行——连「让 AI 看一眼字段结构」都算违反许可
+- [ ] **披露段的范围和实际用法一致吗？** 写宽了写窄了都不行，依据是
+      `CLAUDE.md` 第五节
+
+### 复现包还差四项
+
+阶段 08 未建。按 AEA DCAS v1.0 的九项自检，本仓现在**缺** `sessionInfo()` 存档、
+预估运行时长、受限数据获取说明、一键驱动脚本。完整对照表见
+[academic-integrity.md](references/academic-integrity.md) 第 3 节。
+
+> AI 辅助研究不是让 AI 替研究者完成研究，而是研究者主导、AI 执行。
+> 边界划得清不清，直接决定这些产出能不能经得起复现检验。

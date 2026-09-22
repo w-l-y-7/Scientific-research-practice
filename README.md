@@ -10,6 +10,11 @@
 综述线方向是 **金融科技**，具体题目待定——`literature_notes/summary_table.md` 还是空表，
 **主题要从文献里长出来**，录进去再定。
 
+实证线另有一条**学术诚信清单**（研究者必须亲自做的五个判断、投稿前自检、复现包还差哪几项）：
+[empirical study/README.md](empirical%20study/README.md) 第八节，
+细则见 [academic-integrity.md](empirical%20study/references/academic-integrity.md)。
+**综述线自己的红线在** [CLAUDE.md](CLAUDE.md)（引用核验、不编造 DOI、措辞跟着 GRADE 走）。
+
 > **⚠️ 现在跑不了完整流水线。** R 及 R 包未安装，实证线的阶段 03–08（全是 `.R`）
 > 一行都没跑过；`.venv` 里也还没有 matplotlib。已装、未装、装上了要补什么，
 > 见[第六节](#六环境与依赖)。**装完环境后这一节要回来改。**
